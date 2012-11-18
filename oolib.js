@@ -92,11 +92,11 @@
 
 	Base = createClass({
 
-		// member variables: destoyFns
+		// member variables: _destroyFns
 
 		_create: function() {
 			var a, c, i, proto, fn;
-			this.destoyFns = [];
+			this._destroyFns = [];
 			a = [];
 			c = this.constructor;
 			while (null != c) {
@@ -128,16 +128,16 @@
 		},
 
 		_addDestroyFn: function(fn) {
-			this.destoyFns.push(fn);
+			this._destroyFns.push(fn);
 		},
 
 		destroy: function() {
 			var i, dfns;
-			dfns = this.destoyFns;
+			dfns = this._destroyFns;
 			for (i = dfns.length - 1; i >= 0; i--) {
 				dfns[i].call(this);
 			}
-			delete this.destoyFns;
+			delete this._destroyFns;
 		}
 	});
 
