@@ -1,62 +1,149 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-
-    <title>Oolib by idya</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>Oolib</h1>
-        <h2>JavaScript OO encapsulation</h2>
-
-        <section id="downloads">
-          <a href="https://github.com/idya/oolib/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/idya/oolib/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/idya/oolib" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h3>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    
-  </body>
+<head>
+<meta charset="utf-8">
+<title>oolib.js</title>
+</head>
+<body>
+	<heading>
+	<h1>oolib.js</h1>
+	<h2>The JavaScript OO library</h2>
+	</heading>
+	<article>
+		<h1>Documentation</h1>
+		<p>...</p>
+	</article>
+	<article>
+		<h1>Reference</h1>
+		<section>
+			<h3>
+				function <em>oo.createClass(?BaseClass, members)</em>
+			</h3>
+			<p>Create a new class (a new constructor function).</p>
+			<p>Parameters:</p>
+			<dl>
+				<dt>BaseClass (optional):
+				<dd>The superclass (constructor function) to inherit from.
+				<dt>members:
+				<dd>
+					An object literal (a map) defining the members of the new class. All non-function members are considered private. All function members with
+					a name starting with a <code>_</code> (underscore) are considered private.
+			</dl>
+			<p>
+				An alternative syntax for creating a subclass: <code>MySubClass = MyBaseClass(members);</code>
+			</p>
+		</section>
+		<section>
+			<h3>
+				field <em>iface</em>
+			</h3>
+			<p>This (private) field references the interface object (the proxy object) of the instance. It is set automatically when creating
+				instances of the class.</p>
+		</section>
+		<section>
+			<h3>
+				abstract method <em>_create(…)</em>
+			</h3>
+			<p>
+				The optional (private) instance initialization method that you can implement in your classes. It is called automatically when creating
+				instances of the class. If a subclass overrides a superclass's <code>_create</code> method, only the subclass's <code>_create</code> method
+				is called.<br>It gets the parameters that you pass when you invoke the constructor function with the <code>new</code> operator.
+			</p>
+			<p>
+				(<code>_create</code> is implemented by <code>oo.Base.</code>)
+			</p>
+		</section>
+		<section>
+			<h3>
+				method <em>_super(methodName, arg1, …, argN)</em>
+			</h3>
+			<p>
+				A (private) method automatically defined for all classes created by oo.createClass(). The <code>_super</code> method calls the superclass
+				method specified by the first parameter (as a string).<br>This is useful if you override a superclass method: with <code>_super</code>
+				you can invoke the overridden method.
+			</p>
+		</section>
+		<section>
+			<h3>
+				method <em>_superApply(methodName, argsArray)</em>
+			</h3>
+			<p>
+				A (private) method automatically defined for all classes created by oo.createClass(). The <code>_superApply</code> method calls the
+				superclass method specified by the first parameter (as a string).<br>This is useful if you override a superclass method: with <code>_superApply</code>
+				you can invoke the overridden method.<br>Method parameters can be specified as an array.
+			</p>
+		</section>
+		<section>
+			<h3>
+				class <em>oo.Interface</em>
+			</h3>
+			<p>
+				A marker interface class for the interface (proxy) objects. All objects returned by <code>oo.createClass</code> are instances of <code>oo.Interface</code>.
+			</p>
+		</section>
+		<section>
+			<h3>
+				class <em>oo.Base</em>
+			</h3>
+			<p>A simple base class, provided by the library. It’s features are detailed in the next reference entries.</p>
+		</section>
+		<section>
+			<h3>
+				abstract method <em>_init(…)</em>
+			</h3>
+			<p>
+				The optional (private) instance initialization method of the classes inherited from <code>oo.Base</code>, that you can implement in your
+				classes. It is called automatically by <code>oo.Base</code>’s implementation of the <code>_create</code> method. In case of an inheritance
+				hierarchy, all the classes’ <code>_init</code> methods are called (starting from the superclasses).<br>It gets the parameters that you
+				pass when you invoke the constructor function with the <code>new</code> operator.
+			</p>
+		</section>
+		<section>
+			<h3>
+				method <em>oo.Base#destroy()</em>
+			</h3>
+			<p>A public method that you can call to deinitialize the object instance. (There is no automatic mechanism in the library to call this
+				method).</p>
+		</section>
+		<section>
+			<h3>
+				abstract method <em>_dispose()</em>
+			</h3>
+			<p>
+				The optional (private) instance deinitialization method of the classes inherited from <code>oo.Base</code>, that you can implement in your
+				classes. It is called automatically by <code>oo.Base</code>’s implementation of the <code>destroy</code> method. In case of an inheritance
+				hierarchy, all the classes’ <code>_dispose</code> methods are called (starting from the subclasses).
+			</p>
+		</section>
+		<section>
+			<h3>
+				method <em>oo.Base#_addDestroyFn(destroyFn)</em>
+			</h3>
+			<p>
+				A (private) method that you can call to register a deinitializator function. The registered function will be called back automatically by <code>oo.Base</code>’s
+				implementation of the <code>destroy</code> method.
+			</p>
+			<p>
+				Uses the (private) field <code>_destroyFns</code>, so please don't define a class member with that name.
+			</p>
+		</section>
+		<section>
+			<h3>
+				method <em>oo.Base#isInstanceOf(MyClass)</em>
+			</h3>
+			<p>
+				A public method that checks if the <em>real</em> instance object (not the interface object) is an instance of <code>MyClass</code>.
+			</p>
+		</section>
+		<section>
+			<h3>
+				function <em>oo.isInterfaceOf(myObj, MyClass)</em>
+			</h3>
+			<p>
+				Checks if <code>myObj</code> is an interface object (a proxy object) for the class <code>MyClass</code>. Useful only if <code>MyClass</code>
+				is a subclass of <code>oo.Base</code> (or if <code>MyClass</code> implements the method <code>isInstanceOf</code>).
+			</p>
+		</section>
+	</article>
+</body>
 </html>
