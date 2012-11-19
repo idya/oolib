@@ -9,11 +9,101 @@
 	<h1>oolib.js</h1>
 	<h2>The JavaScript OO library</h2>
 	</heading>
-	<article>
-		<h1>Documentation</h1>
-		<p>...</p>
+	<article class="guide">
+		<section>
+			<h1>Overview</h1>
+			<p>oolib.js is a tiny javascript library that provides an original solution to the age-old problem of JavaScript OO encapsulation. It
+				offers the following features:</p>
+			<ul>
+				<li>Real encapsulation of object fields and private methods.
+				<li>Class inheritance. (The fields and private methods are accessible by the subclasses.)
+				<li>Support of object initialization and deinitialization.
+				<li>Super method call.
+				<li>Intuitive syntax.
+				<li>Good performance. (No costly "magic").
+			</ul>
+		</section>
+		<section>
+			<h1>Getting started</h1>
+			<p>
+				Download the library from here: <a href="https://github.com/idya/oolib">https://github.com/idya/oolib</a>
+			</p>
+			<p>Include oolib.js into your HTML file, with something like this:</p>
+			<pre><code>&lt;script src='path/to/oolib.js'>&lt;/script></code></pre>
+			<p>
+				This will create a global namespace object <code>oo</code>.
+			</p>
+			<p>The library is also provided as an A(synchronous) M(odule) D(efinition) module (RequireJS, curl.js, etc.), and as a CommonJS module
+				(typically for server-side environments).</p>
+		</section>
+		<section>
+			<h1>The basics</h1>
+			<p>We can define a class (ie a constructor function) with the following syntax:</p>
+			<pre><code>var MyClass = oo.createClass({
+
+	_create: function(foo) {
+		this.myField = foo;
+	},
+	_myPrivateMethod: function(bar) {
+		return this.foo + bar;
+	},
+	myPublicMethod: function(baz) {
+		return this._myPrivateMethod(baz);
+	}
+});</code></pre>
+			<p>
+				<code>_create</code> is the instance initialization method (we would call it a "constructor" is java), that is called automatically, when a
+				new instance object is created. Let's create a new instance of this class:
+			</p>
+			<pre><code>var myObj = new MyClass(42);</code></pre>
+			<p>
+				Now here is the trick: we can <em>not</em> access the private methods (<code>_myPrivateMethod</code>, <code>_create</code>), nor the member
+				fields (<code>myField</code>) through <code>myObj</code>. In fact, <code>myObj</code> has only a single member: <code>myPublicMethod</code>.
+				If we call <code>myObj._myPrivateMethod()</code> or <code>myObj._create()</code>, we will get an exception; if we read <code>myObj._myField</code>,
+				we will always get <code>undefined</code>.
+			</p>
+			<p>
+				Actually, the object returned by the <code>new</code> operator (<code>myObj</code>) is <em>not</em> the real instance object; <code>myObj</code>
+				is only a proxy object - I call it an "interface object" -, that contains proxy functions to the real public methods. The real instance
+				object is hidden behind the curtains: it is <em>encapsulated</em>. Anyway, we can use <code>myObj</code> (the interface object) just as if
+				it was the <em>real</em> instance object (with the exception of the <code>instanceof</code> operator; but we have a solution for that - keep
+				reading).
+			</p>
+			<p>
+				As you may have noticed, we use a naming convension here: if a method name starts with an underscore, it is considered private.<br>
+				Fields are always considered private: we don’t have to start field names with an underscore.<br>Also, all of the <em>own</em> members
+				of the (real) instance object (in the sense of <code>Object#hasOwnProperty</code>) are considered private.
+			</p>
+		</section>
+		<section>
+			<h1>Inheritance</h1>
+			<p>We can define a subclass with the following syntax:</p>
+			<pre><code>var MySubClass = oo.createClass(MyClass, {
+
+	_myPrivateMethod: function(bar) {
+		return this._super("_myPrivateMethod", (bar + 1));
+	}
+});</code></pre>
+			<p>Subclasses can access the fields and the private methods of the superclass(es).</p>
+			<p>
+				As you can see, we can invoke the overridden superclass methods using the <code>_super</code> method. We have to supply the method name as
+				the first parameter.<br>There is also <code>_superApply</code>; check the reference section.
+			</p>
+			<p>There is an alternative syntax for defining a subclass (a syntactic sugar):</p>
+			<pre><code>var MySubClass = MyClass({
+
+	_myPrivateMethod: function(bar) {
+		return this._super("_myPrivateMethod", (bar + 1));
+	}
+});</code></pre>
+			<p>The above two subclass definitions are completely equivalent.</p>
+		</section>
+		<section>
+			<h1>The oo.Base class</h1>
+			<p>...</p>
+		</section>
 	</article>
-	<article>
+	<article class="reference">
 		<h1>Reference</h1>
 		<section>
 			<h3>
