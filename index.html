@@ -77,9 +77,7 @@
 			<h3>
 				class <em>oo.Interface</em>
 			</h3>
-			<p>
-				A marker interface class for the interface (proxy) objects. All objects returned by <code>oo.createClass</code> are instances of <code>oo.Interface</code>.
-			</p>
+			<p>A marker interface class for the interface (proxy) objects.</p>
 		</section>
 		<section>
 			<h3>
@@ -121,7 +119,8 @@
 			</h3>
 			<p>
 				A (private) method that you can call to register a deinitializator function. The registered function will be called back automatically by <code>oo.Base</code>’s
-				implementation of the <code>destroy</code> method.
+				implementation of the <code>destroy</code> method.<br>The function call will be bound to the <em>real</em> instance object (ie the
+				value of <code>this</code> will be the instance object.)
 			</p>
 			<p>
 				Uses the (private) field <code>_destroyFns</code>, so please don't define a class member with that name.
