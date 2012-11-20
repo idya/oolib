@@ -1,25 +1,65 @@
 body {
-	background-color: #D0D0D0;
+	background-color: #d0d0D0;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 1em;
+	line-height: 1.3em;
 }
 
 code {
-	border: thin dotted #CC0000;
-	background-color: #F0F0F0;
+	border: thin dotted #cc0000;
+	background-color: #f0f0f0;
 }
 
 pre code {
 	display: block;
 	white-space: pre-wrap;
 	padding: 0.2mm;
+	font-family: 'Bitstream Vera Sans Mono', 'Courier', monospace;
+	line-height: 1em;
 }
 
 div.article,div.heading {
-	display: block;
 	max-width: 190mm;
 	padding: 10mm;
-	background-color: #FFFFFF;
+	background-color: #ffffff;
 	margin-bottom: 5mm;
 	margin-left: auto;
 	margin-right: auto;
 	border: solid thin #000000;
+}
+
+div.heading h1 {
+	font-size: 2.5em;
+}
+
+div.heading h2 {
+	font-size: 1em;
+	font-family: 'Bitstream Vera Sans Mono', 'Courier', monospace;
+}
+
+div.article h1 {
+	font-size: 2em;
+}
+
+div.article h2 {
+	font-size: 1.5em;
+}
+
+div.reference h3 {
+	font-size: 1.2em;
+	font-weight: normal;
+	border-bottom: thin dotted black;
+}
+
+div.reference h3 em {
+	color: #008000;
+}
+
+a {
+	color: #4682b4;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }

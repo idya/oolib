@@ -8,12 +8,12 @@
 <body>
 	<div class="heading">
 		<h1>oolib.js</h1>
-		<h2>The JavaScript OO library</h2>
+		<h2>// The JavaScript OOP library</h2>
 	</div>
 	<div class="article guide">
 		<section>
 			<h1>Overview</h1>
-			<p>oolib.js is a tiny javascript library that provides an original solution to the age-old problem of JavaScript OO encapsulation. It
+			<p>oolib.js is a tiny javascript library that provides an original solution to the age-old problem of JavaScript OOP encapsulation. It
 				offers the following features:</p>
 			<ul>
 				<li>Real encapsulation of object fields and private methods.
@@ -193,24 +193,21 @@ var b = myObj instanceof MyClass; // returns false</code></pre>
 			<pre><code>b = myObj.isInstanceOf(MyClass); // returns true</code></pre>
 			<p>
 				The library defines a marker interface class <code>oo.Interface</code>. All interface objects are instances of this class:
-			<pre><code>b = myObj instanceof oo.Interface; // returns true</code></pre>
 			</p>
+			<pre><code>b = myObj instanceof oo.Interface; // returns true</code></pre>
 			<p>
 				And finally, the library provides a helper function <code>oo.isInterfaceOf</code>. With this function you we check, if an arbitrary object
 				is an interface object for a class:
-			<pre><code>b = oo.isInterfaceOf(myObj, MyClass); // returns true</code></pre>
 			</p>
+			<pre><code>b = oo.isInterfaceOf(myObj, MyClass); // returns true</code></pre>
 			<p>
 				<code>oo.isInterfaceOf</code> works according to the following algorithm:
+			</p>
 			<ol>
 				<li>It checks if <code>myObj</code> is an instance of the <code>oo.Interface</code> class. If not, it returns <code>false</code>.
-				</li>
 				<li>It checks if <code>myObj</code> has a method named <code>isInstanceOf</code>. If not, it returns <code>undefined</code>.
-				</li>
 				<li>It returns <code>myObj.isInstanceOf(MyClass)</code>.
-				</li>
 			</ol>
-			</p>
 		</section>
 	</div>
 	<div class="article reference">
