@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <title>oolib.js</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
 </head>
 <body>
-	<heading>
-	<h1>oolib.js</h1>
-	<h2>The JavaScript OO library</h2>
-	</heading>
-	<article class="guide">
+	<div class="heading">
+		<h1>oolib.js</h1>
+		<h2>The JavaScript OO library</h2>
+	</div>
+	<div class="article guide">
 		<section>
 			<h1>Overview</h1>
 			<p>oolib.js is a tiny javascript library that provides an original solution to the age-old problem of JavaScript OO encapsulation. It
@@ -20,7 +21,7 @@
 				<li>Support of object initialization and deinitialization.
 				<li>Super method call.
 				<li>Intuitive syntax.
-				<li>Good performance. (No costly "magic").
+				<li>Good performance (no costly "magic"). Really tiny (only 1.6 kilobytes minified / 0.7 kilobytes gzipped).
 			</ul>
 		</section>
 		<section>
@@ -28,8 +29,8 @@
 			<p>
 				Download the library from here: <a href="https://github.com/idya/oolib">https://github.com/idya/oolib</a>
 			</p>
-			<p>Include oolib.js into your HTML file, with something like this:</p>
-			<pre><code>&lt;script src='path/to/oolib.js'>&lt;/script></code></pre>
+			<p>Include oolib.js into your HTML file with something like this:</p>
+			<pre><code>&lt;script src='path/to/oolib.js'&gt;&lt;/script&gt;</code></pre>
 			<p>
 				This will create a global namespace object <code>oo</code>.
 			</p>
@@ -81,29 +82,138 @@
 			<pre><code>var MySubClass = oo.createClass(MyClass, {
 
 	_myPrivateMethod: function(bar) {
-		return this._super("_myPrivateMethod", (bar + 1));
+		return this.foo + bar + 1;
 	}
 });</code></pre>
-			<p>Subclasses can access the fields and the private methods of the superclass(es).</p>
-			<p>
-				As you can see, we can invoke the overridden superclass methods using the <code>_super</code> method. We have to supply the method name as
-				the first parameter.<br>There is also <code>_superApply</code>; check the reference section.
-			</p>
 			<p>There is an alternative syntax for defining a subclass (a syntactic sugar):</p>
 			<pre><code>var MySubClass = MyClass({
 
 	_myPrivateMethod: function(bar) {
-		return this._super("_myPrivateMethod", (bar + 1));
+		return this.foo + bar + 1;
 	}
 });</code></pre>
 			<p>The above two subclass definitions are completely equivalent.</p>
+			<p>Subclasses can access the fields and the private methods of the superclass(es).</p>
+			<section>
+				<h2>Invoking overridden methods</h2>
+				<p>
+					We can invoke overridden superclass methods with <code>this._super(...)</code>. We have to supply the method name as the first parameter:
+				</p>
+				<pre><code>var MySubClass = MyClass({
+
+	_myPrivateMethod: function(bar) {
+		return this._super("_myPrivateMethod", bar) + 1;
+	}
+});</code></pre>
+				<p>
+					There is also <code>_superApply</code>; check the reference section.
+				</p>
+			</section>
 		</section>
 		<section>
 			<h1>The oo.Base class</h1>
-			<p>...</p>
+			<p>
+				<code>oo.Base</code> is a class defined by the library, that we can use as a base class for our classes. It provides the following basic
+				features:
+			</p>
+			<ul>
+				<li>Instance initialization support.</li>
+				<li>Instance deinitialization support.</li>
+				<li>instanceof support.</li>
+			</ul>
+			<section>
+				<h2>Instance initialization and deinitialization support</h2>
+				<p>
+					If we have an inheritance chain, and all the classes in the chain have a <code>_create</code> method, only one of them is invoked
+					automatically when a new instance object is created (the <code>_create</code> method of the subclass at the end of the chain). Of course,
+					we can invoke the overridden <code>_create</code> methods with <code>_super</code> - but we have to do it explicitly. That's where <code>oo.Base</code>
+					comes to help: It implements <code>_create</code> in such a way, that it calls the <code>_init</code> methods of all the classes in the
+					inheritance chain (if they exist) automatically.
+				</p>
+				<p>
+					<code>oo.Base</code> also defines a public method called destroy. It implements <code>destroy</code> in such a way that it calls the <code>_dispose</code>
+					methods of all the classes in the inheritance chain (if they exist) automatically.
+				</p>
+				<pre><code>var MyClass = oo.Base({
+
+	_init: function(bar) {
+		console.log("Initializing MyClass");
+	},
+
+	// define some other methods ...
+
+	_dispose: function() {
+		console.log("Deinitializing MyClass");
+	}
+});
+
+var MySubClass = oo.MyClass({
+
+	_init: function(bar) {
+		console.log("Initializing MySubClass");
+	},
+
+	// define some other methods ...
+
+	_dispose: function() {
+		console.log("Deinitializing MySubClass");
+	}
+});
+
+var myObj = new MySubClass(); // will invoke MyClass#_init, MySubClass#_init, in this order
+
+// do some work with myObj ...
+
+myObj.destroy(); // will invoke MySubClass#_dispose, MyClass#_dispose, in this order
+</code></pre>
+				<p>
+					(The library itself does not implement any mechanisms to call the <code>destroy</code> method automatically.)
+				</p>
+				<p>
+					There is also <code>_addDestroyFn</code>; check the reference section.
+				</p>
+			</section>
 		</section>
-	</article>
-	<article class="reference">
+		<section>
+			<h1>instanceof support</h1>
+			<p>Consider the following example:</p>
+			<pre><code>var MyClass = oo.Base({
+
+	// define some class members ...
+});
+
+var myObj = new MyClass();
+ 
+var b = myObj instanceof MyClass; // returns false</code></pre>
+			<p>
+				<code>myObj instanceof MyClass</code> returns <code>false</code>, because <code>myObj</code> is not the <em>real</em> instance object, but
+				only the interface object. So how can we check, if <code>myObj</code> is an interface object for <code>MyClass</code>? <br> <code>oo.Base</code>
+				has an <code>isInstanceOf</code> method; so we can do
+			</p>
+			<pre><code>b = myObj.isInstanceOf(MyClass); // returns true</code></pre>
+			<p>
+				The library defines a marker interface class <code>oo.Interface</code>. All interface objects are instances of this class:
+			<pre><code>b = myObj instanceof oo.Interface; // returns true</code></pre>
+			</p>
+			<p>
+				And finally, the library provides a helper function <code>oo.isInterfaceOf</code>. With this function you we check, if an arbitrary object
+				is an interface object for a class:
+			<pre><code>b = oo.isInterfaceOf(myObj, MyClass); // returns true</code></pre>
+			</p>
+			<p>
+				<code>oo.isInterfaceOf</code> works according to the following algorithm:
+			<ol>
+				<li>It checks if <code>myObj</code> is an instance of the <code>oo.Interface</code> class. If not, it returns <code>false</code>.
+				</li>
+				<li>It checks if <code>myObj</code> has a method named <code>isInstanceOf</code>. If not, it returns <code>undefined</code>.
+				</li>
+				<li>It returns <code>myObj.isInstanceOf(MyClass)</code>.
+				</li>
+			</ol>
+			</p>
+		</section>
+	</div>
+	<div class="article reference">
 		<h1>Reference</h1>
 		<section>
 			<h3>
@@ -182,8 +292,8 @@
 			<p>
 				The optional (private) instance initialization method of the classes inherited from <code>oo.Base</code>, that you can implement in your
 				classes. It is called automatically by <code>oo.Base</code>’s implementation of the <code>_create</code> method. In case of an inheritance
-				hierarchy, all the classes’ <code>_init</code> methods are called (starting from the superclasses).<br>It gets the parameters that you
-				pass when you invoke the constructor function with the <code>new</code> operator.
+				chain, all the classes’ <code>_init</code> methods are called (starting from the superclasses).<br>It gets the parameters that you pass
+				when you invoke the constructor function with the <code>new</code> operator.
 			</p>
 		</section>
 		<section>
@@ -200,7 +310,7 @@
 			<p>
 				The optional (private) instance deinitialization method of the classes inherited from <code>oo.Base</code>, that you can implement in your
 				classes. It is called automatically by <code>oo.Base</code>’s implementation of the <code>destroy</code> method. In case of an inheritance
-				hierarchy, all the classes’ <code>_dispose</code> methods are called (starting from the subclasses).
+				chain, all the classes’ <code>_dispose</code> methods are called (starting from the subclasses).
 			</p>
 		</section>
 		<section>
@@ -233,6 +343,6 @@
 				is a subclass of <code>oo.Base</code> (or if <code>MyClass</code> implements the method <code>isInstanceOf</code>).
 			</p>
 		</section>
-	</article>
+	</div>
 </body>
 </html>

@@ -1,0 +1,25 @@
+body {
+	background-color: #D0D0D0;
+}
+
+code {
+	border: thin dotted #CC0000;
+	background-color: #F0F0F0;
+}
+
+pre code {
+	display: block;
+	white-space: pre-wrap;
+	padding: 0.2mm;
+}
+
+div.article,div.heading {
+	display: block;
+	max-width: 190mm;
+	padding: 10mm;
+	background-color: #FFFFFF;
+	margin-bottom: 5mm;
+	margin-left: auto;
+	margin-right: auto;
+	border: solid thin #000000;
+}
