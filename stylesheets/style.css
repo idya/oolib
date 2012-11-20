@@ -1,5 +1,5 @@
 body {
-	background-color: #d0d0D0;
+	background-color: #c0c0c0;
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 1em;
 	line-height: 1.3em;
@@ -63,4 +63,9 @@ a {
 
 a:hover {
 	text-decoration: underline;
+}
+
+div.heading div.nav {
+	display: block;
+	float: right;
 }
