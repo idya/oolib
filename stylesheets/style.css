@@ -1,6 +1,6 @@
 body {
 	background-color: #c0c0c0;
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-family: Arial, sans-serif;
 	font-size: 1em;
 	line-height: 1.3em;
 }
@@ -14,7 +14,7 @@ pre code {
 	display: block;
 	white-space: pre-wrap;
 	padding: 0.2mm;
-	font-family: 'Bitstream Vera Sans Mono', 'Courier', monospace;
+	font-family: Consolas, monospace;
 	line-height: 1em;
 	font-size: 0.9em;
 }
@@ -35,7 +35,7 @@ div.heading h1 {
 
 div.heading h2 {
 	font-size: 1em;
-	font-family: 'Bitstream Vera Sans Mono', 'Courier', monospace;
+	font-family: Consolas, monospace;
 }
 
 div.article h1 {
