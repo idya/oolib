@@ -27,6 +27,20 @@
 </script>
 </head>
 <body>
+	<!-- Facebook -->
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/hu_HU/all.js#xfbml=1";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!--  -->
 	<div class="heading">
 		<div class="nav">
 			<a href="#guide">Guide</a> / <a href="#reference">Reference</a> / <a href="#comments">Comments</a>
@@ -365,6 +379,7 @@ var b = myObj instanceof MyClass; // returns false</code></pre>
 		</section>
 	</div>
 	<div id="comments" class="article comments">
+		<!-- disqus -->
 		<div id="disqus_thread"></div>
 		<script type="text/javascript">
 			/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -384,14 +399,17 @@ var b = myObj instanceof MyClass; // returns false</code></pre>
 			Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 		</noscript>
 		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<!--  -->
 	</div>
 	<div class="address">
-		<h1>Author</h1>
+		<h1>Author:</h1>
 		<p>
 			<a href="#">Zsolt Szloboda</a>, <a href="#">Idya Ltd.</a>
 		</p>
 		<div>
 			<div class="g-plusone" data-annotation="none"></div>
+			<div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"
+				data-font="arial"></div>
 		</div>
 	</div>
 	<!-- g+ -->
@@ -405,5 +423,6 @@ var b = myObj instanceof MyClass; // returns false</code></pre>
 			s.parentNode.insertBefore(po, s);
 		})();
 	</script>
+	<!--  -->
 </body>
 </html>
