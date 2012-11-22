@@ -69,3 +69,18 @@ div.heading div.nav {
 	display: block;
 	float: right;
 }
+
+div.address {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: white;
+	border: thin solid gray;
+	padding: 0.5em;
+	border-radius: 0.3em;
+}
+
+div.address H1 {
+	font-size: 1.2em;
+	font-weight: normal;
+}
