@@ -71,13 +71,14 @@ div.heading div.nav {
 }
 
 div.address {
-	position: absolute;
-	top: 0;
+	position: fixed;
+	bottom: 0;
 	right: 0;
 	background-color: white;
 	border: thin solid gray;
 	padding: 0.5em;
 	border-radius: 0.3em;
+	z-index: -1;
 }
 
 div.address H1 {
