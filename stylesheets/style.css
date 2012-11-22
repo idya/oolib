@@ -72,8 +72,8 @@ div.heading div.nav {
 
 div.address {
 	position: fixed;
-	bottom: 0;
-	right: 0;
+	bottom: 5mm;
+	right: 5mm;
 	background-color: white;
 	border: thin solid gray;
 	padding: 0.5em;
