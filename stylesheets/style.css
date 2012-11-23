@@ -13,10 +13,19 @@ code {
 pre code {
 	display: block;
 	white-space: pre-wrap;
-	padding: 0.2mm;
+	padding: 0.2em;
 	font-family: Consolas, monospace;
 	line-height: 1em;
 	font-size: 0.9em;
+}
+
+a {
+	color: #4682b4;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 div.article,div.heading {
@@ -29,6 +38,10 @@ div.article,div.heading {
 	border: solid thin #000000;
 }
 
+div.heading {
+	padding-bottom: 0;
+}
+
 div.heading h1 {
 	font-size: 2.5em;
 }
@@ -36,6 +49,11 @@ div.heading h1 {
 div.heading h2 {
 	font-size: 1em;
 	font-family: Consolas, monospace;
+}
+
+div.heading div.address {
+	text-align: right;
+	font-size: 0.9em;
 }
 
 div.article h1 {
@@ -54,36 +72,6 @@ div.reference h3 {
 
 div.reference h3 em {
 	color: #008000;
-}
-
-a {
-	color: #4682b4;
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-div.heading div.nav {
-	display: block;
-	float: right;
-}
-
-div.address {
-	position: fixed;
-	bottom: 5mm;
-	right: 5mm;
-	background-color: white;
-	border: thin solid gray;
-	padding: 0.5em;
-	border-radius: 0.3em;
-	z-index: -1;
-}
-
-div.address H1 {
-	font-size: 1.2em;
-	font-weight: normal;
 }
 
 div.share {
