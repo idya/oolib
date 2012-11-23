@@ -40,6 +40,7 @@ div.article,div.heading {
 
 div.heading {
 	padding-bottom: 0;
+	overflow: hidden;
 }
 
 div.heading div.nav {
