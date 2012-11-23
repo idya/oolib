@@ -62,6 +62,10 @@ div.heading div.address {
 	font-style: italic;
 }
 
+div.heading div.share {
+	float: right;
+}
+
 div.article h1 {
 	font-size: 2em;
 }
@@ -78,18 +82,4 @@ div.reference h3 {
 
 div.reference h3 em {
 	color: #008000;
-}
-
-div.share {
-	position: fixed;
-	bottom: 3em;
-	left: 0;
-}
-
-div.share>div {
-	margin-top: 0.1em;
-}
-
-div.share>div.fb {
-	padding-bottom: 3px;
 }
