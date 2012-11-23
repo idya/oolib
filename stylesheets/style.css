@@ -56,7 +56,7 @@ div.heading h2 {
 }
 
 div.heading div.address {
-	text-align: right;
+	float: right;
 	font-size: 0.9em;
 	font-style: italic;
 }
