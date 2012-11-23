@@ -1,9 +1,9 @@
 body {
+	color: black;
 	background-color: #c0c0c0;
 	font-family: Arial, sans-serif;
 	font-size: 1em;
 	line-height: 1.3em;
-	color: black;
 }
 
 code {
@@ -16,8 +16,8 @@ pre code {
 	white-space: pre-wrap;
 	padding: 0.2em;
 	font-family: Consolas, monospace;
-	line-height: 1em;
 	font-size: 0.9em;
+	line-height: 1em;
 }
 
 a {
@@ -37,11 +37,11 @@ div.article,div.heading {
 	margin-left: auto;
 	margin-right: auto;
 	border: solid thin #000000;
+	overflow: hidden;
 }
 
 div.heading {
 	padding-bottom: 0;
-	overflow: hidden;
 }
 
 div.heading div.nav {
