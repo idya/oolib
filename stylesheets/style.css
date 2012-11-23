@@ -85,3 +85,8 @@ div.address H1 {
 	font-size: 1.2em;
 	font-weight: normal;
 }
+
+div.share {
+	position: fixed;
+	bottom: 0;
+}
