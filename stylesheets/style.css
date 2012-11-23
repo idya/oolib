@@ -88,6 +88,6 @@ div.address H1 {
 
 div.share {
 	position: fixed;
-	top: 0;
+	bottom: 3em;
 	left: 0;
 }
