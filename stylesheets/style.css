@@ -95,3 +95,7 @@ div.share {
 div.share>div {
 	margin-top: 0.3em;
 }
+
+div.share>div.fb {
+	margin-bottom: 3px;
+}
