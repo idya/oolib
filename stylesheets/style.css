@@ -63,6 +63,10 @@ div.heading div.address {
 	padding-bottom: 0.5em;
 }
 
+div.heading div.address a {
+	color: black;
+}
+
 div.heading div.share {
 	text-align: right;
 }
