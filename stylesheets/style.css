@@ -44,7 +44,7 @@ div.heading {
 }
 
 div.heading div.nav {
-	float: right;
+	text-align: right;
 }
 
 div.heading h1 {
@@ -57,13 +57,13 @@ div.heading h2 {
 }
 
 div.heading div.address {
-	float: right;
+	text-align: right;
 	font-size: 0.9em;
 	font-style: italic;
 }
 
 div.heading div.share {
-	float: right;
+	text-align: right;
 }
 
 div.article h1 {
