@@ -64,6 +64,7 @@ div.heading div.address {
 
 div.heading div.share {
 	text-align: right;
+	white-space: nowrap;
 }
 
 div.article h1 {
