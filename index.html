@@ -36,48 +36,15 @@
 		<div style="text-align: right; white-space: nowrap;">
 			<!-- Google+ -->
 			<div class="g-plusone" data-size="medium" data-annotation="none"></div>
-			<script type="text/javascript">
-				(function() {
-					var po = document.createElement('script');
-					po.type = 'text/javascript';
-					po.async = true;
-					po.src = 'https://apis.google.com/js/plusone.js';
-					var s = document.getElementsByTagName('script')[0];
-					s.parentNode.insertBefore(po, s);
-				})();
-			</script>
 			<!--  -->
 			<span>&nbsp;</span>
 			<!-- Facebook -->
 			<div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"
 				data-font="arial" style="vertical-align: top;"></div>
-			<div id="fb-root"></div>
-			<script>
-				(function(d, s, id) {
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id))
-						return;
-					js = d.createElement(s);
-					js.id = id;
-					js.src = "//connect.facebook.net/hu_HU/all.js#xfbml=1";
-					fjs.parentNode.insertBefore(js, fjs);
-				}(document, 'script', 'facebook-jssdk'));
-			</script>
 			<!--  -->
 			<span>&nbsp;</span>
 			<!-- Twitter -->
 			<a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a> <span>&nbsp;</span>
-			<script>
-				!function(d, s, id) {
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (!d.getElementById(id)) {
-						js = d.createElement(s);
-						js.id = id;
-						js.src = "//platform.twitter.com/widgets.js";
-						fjs.parentNode.insertBefore(js, fjs);
-					}
-				}(document, "script", "twitter-wjs");
-			</script>
 			<!--  -->
 			<span>&nbsp;</span>
 			<!-- LinkedIn -->
@@ -444,5 +411,44 @@ var b = myObj instanceof MyClass; // returns false</code></pre>
 		<p>...</p>
 		<div></div>
 	</div>
+	<!-- Google+ -->
+	<script type="text/javascript">
+		(function() {
+			var po = document.createElement('script');
+			po.type = 'text/javascript';
+			po.async = true;
+			po.src = 'https://apis.google.com/js/plusone.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(po, s);
+		})();
+	</script>
+	<!--  -->
+	<!-- Facebook -->
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/hu_HU/all.js#xfbml=1";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!--  -->
+	<!-- Twitter -->
+	<script>
+		!function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (!d.getElementById(id)) {
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "//platform.twitter.com/widgets.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}
+		}(document, "script", "twitter-wjs");
+	</script>
+	<!--  -->
 </body>
 </html>
