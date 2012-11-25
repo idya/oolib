@@ -150,10 +150,11 @@
 		}
 	}
 
-	this.oo = {
-		createClass: createClass,
-		Interface: Interface,
-		Base: Base,
-		isInterfaceOf: isInterfaceOf
-	};
+	if (null == this.oo) {
+		this.oo = {};
+	}
+	this.oo.createClass = createClass;
+	this.oo.Interface = Interface;
+	this.oo.Base = Base;
+	this.oo.isInterfaceOf = isInterfaceOf;
 }());
