@@ -1,6 +1,7 @@
 /*
  * oolib.js 1.0
  * (c) 2012 Zsolt Szloboda, Idya Ltd.
+ * Improvement ideas from: A. Matías Quezada (amatiasq@gmail.com)
  * Released under the MIT license
  */
 
@@ -150,11 +151,24 @@
 		}
 	}
 
-	if (null == this.oo) {
-		this.oo = {};
+	function exp(o) {
+		o.createClass = createClass;
+		o.Interface = Interface;
+		o.Base = Base;
+		o.isInterfaceOf = isInterfaceOf;
+		return o;
 	}
-	this.oo.createClass = createClass;
-	this.oo.Interface = Interface;
-	this.oo.Base = Base;
-	this.oo.isInterfaceOf = isInterfaceOf;
+	if (((typeof define) === "function") && (null != define.amd) && ((typeof define.amd) === "object")) {
+		define(function() {
+			return exp({});
+		});
+	} else {
+		if ((null != this.exports) && ((typeof this.exports) === "object")) {
+			this.exports = exp({});
+		}
+		if (null == this.oo) {
+			this.oo = {};
+		}
+		exp(this.oo);
+	}
 }());
