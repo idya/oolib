@@ -1,5 +1,5 @@
 /*
- * oolib.js 1.0
+ * oolib.js 1.0.1
  * (c) 2012 Zsolt Szloboda, Idya Ltd.
  * Released under the MIT license
  */
@@ -53,20 +53,34 @@
 			proto.constructor = classFn;
 			classFn.prototype = proto;
 			classFn.superclass = superClassFn;
-			proto._super = function(methodName /* , *arg */) {
-				var args;
-				args = arraySlice.call(arguments, 1);
-				return superClassFn.prototype[methodName].apply(this, args);
-			};
-			proto._superApply = function(methodName, args) {
-				return superClassFn.prototype[methodName].apply(this, args);
-			};
 		} else {
 			proto = classFn.prototype;
 		}
 		if (null != members) {
 			for (key in members) {
-				proto[key] = members[key];
+				m = members[key];
+				if ((null != superClassFn) && ((typeof m) === "function")) {
+					(function(m) {
+						proto[key] = function() {
+							var superOrig, superApplyOrig;
+							superOrig = this._super;
+							superApplyOrig = this._superApply;
+							this._super = function(methodName /* , *arg */) {
+								var args;
+								args = arraySlice.call(arguments, 1);
+								return superClassFn.prototype[methodName].apply(this, args);
+							};
+							this._superApply = function(methodName, args) {
+								return superClassFn.prototype[methodName].apply(this, args);
+							};
+							m.apply(this, arguments);
+							this._super = superOrig;
+							this._superApply = superApplyOrig;
+						};
+					}(m));
+				} else {
+					proto[key] = m;
+				}
 			}
 		}
 		publicMethods = {};
