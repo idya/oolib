@@ -1,5 +1,5 @@
 /*
- * oolib.js 1.0.1
+ * oolib.js 1.0.2
  * (c) 2012 Zsolt Szloboda, Idya Ltd.
  * Released under the MIT license
  */
@@ -73,9 +73,12 @@ function createClass(/* ?superClassFn, members */) {
 						this._superApply = function(methodName, args) {
 							return superClassFn.prototype[methodName].apply(this, args);
 						};
-						m.apply(this, arguments);
-						this._super = superOrig;
-						this._superApply = superApplyOrig;
+						try {
+							m.apply(this, arguments);
+						} finally {
+							this._super = superOrig;
+							this._superApply = superApplyOrig;
+						}
 					};
 				}(m));
 			} else {
