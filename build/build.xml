@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Minify oolib">
+	<target name="minify">
+		<java jar="yuicompressor-2.4.7.jar" fork="true">
+			<arg value="-v" />
+			<arg value="--charset" />
+			<arg value="UTF-8" />
+			<arg value="-o" />
+			<arg value="../oolib-min.js" />
+			<arg value="../oolib.js" />
+		</java>
+	</target>
+</project>
